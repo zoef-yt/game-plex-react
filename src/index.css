@@ -1,0 +1,42 @@
+@import url(https://unpkg.com/mockman-js@latest/dist/style.css);
+
+.game-plex-app {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 8rem 1fr 5rem;
+	grid-template-areas:
+		'navbar'
+		'main-content '
+		'footer  ';
+	margin: auto;
+	min-height: 100vh;
+	max-height: 100%;
+	width: 100%;
+}
+
+.app-main-content {
+	grid-area: main-content;
+}
+
+.app-footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	grid-area: footer;
+}
+
+@media screen and (max-width: 768px) {
+	.game-plex-app {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 14rem 1fr 5rem;
+		grid-template-areas:
+			'navbar'
+			'main-content '
+			'footer  ';
+		margin: auto;
+		height: 100vh;
+		width: 100%;
+		max-width: 170rem;
+	}
+}
