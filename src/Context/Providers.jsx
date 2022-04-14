@@ -1,7 +1,13 @@
-import { ThemeProvider } from './index.js';
+import { ThemeProvider, CategoryProvider, VideoProvider } from './index.js';
 
 const Providers = ({ children }) => {
-	return <ThemeProvider>{children}</ThemeProvider>;
+	return (
+		<ThemeProvider>
+			<CategoryProvider>
+				<VideoProvider>{children}</VideoProvider>
+			</CategoryProvider>
+		</ThemeProvider>
+	);
 };
 
 export { Providers };

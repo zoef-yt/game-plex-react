@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useCategory } from '../../Context';
 import './Home.css';
 function Home() {
+	const { categories, loadingCategories } = useCategory();
 	return (
 		<div className='app-main-content home-body'>
 			{/* //!TODO THE IFRAME WILL BE EXTRACTED AND WILL BE USED AS AND COMPONENT IN THE NEXT PR */}
@@ -16,47 +19,10 @@ function Home() {
 			<section className='home-category-section'>
 				<h1>All Categories</h1>
 				<hr />
+
 				<div className='categories-listing'>
-					<div className='category-card'>
-						<h3>Gameplay's</h3>
-						<img src='https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S1_2560x1440-160cacc798ef1693cc0a339e869f1761'></img>
-						<button className='btn btn-primary'>Watch Now!</button>
-					</div>
-					<div className='category-card'>
-						<h3>Vlogs</h3>
-						<img src='https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S1_2560x1440-160cacc798ef1693cc0a339e869f1761'></img>
-						<button className='btn btn-primary'>Watch Now!</button>
-					</div>
-					<div className='category-card'>
-						<h3>FPS</h3>
-						<img src='https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S1_2560x1440-160cacc798ef1693cc0a339e869f1761'></img>
-						<button className='btn btn-primary'>Watch Now!</button>
-					</div>
-					<div className='category-card'>
-						<h3>Storyline</h3>
-						<img src='https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S1_2560x1440-160cacc798ef1693cc0a339e869f1761'></img>
-						<button className='btn btn-primary'>Watch Now!</button>
-					</div>
-					<div className='category-card'>
-						<h3>Lifestyle</h3>
-						<img src='https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S1_2560x1440-160cacc798ef1693cc0a339e869f1761'></img>
-						<button className='btn btn-primary'>Watch Now!</button>
-					</div>
-					<div className='category-card'>
-						<h3>Podcast</h3>
-						<img src='https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S1_2560x1440-160cacc798ef1693cc0a339e869f1761'></img>
-						<button className='btn btn-primary'>Watch Now!</button>
-					</div>
-					<div className='category-card'>
-						<h3>Scary Games</h3>
-						<img src='https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S1_2560x1440-160cacc798ef1693cc0a339e869f1761'></img>
-						<button className='btn btn-primary'>Watch Now!</button>
-					</div>
-					<div className='category-card'>
-						<h3>Rage Moments</h3>
-						<img src='https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S1_2560x1440-160cacc798ef1693cc0a339e869f1761'></img>
-						<button className='btn btn-primary'>Watch Now!</button>
-					</div>
+					{!loadingCategories &&
+						categories.map(({ _id, categoryName, src }) => <CategoryCard key={_id} categoryName={categoryName} src={src} />)}
 				</div>
 			</section>
 		</div>
@@ -64,3 +30,16 @@ function Home() {
 }
 
 export { Home };
+
+const CategoryCard = ({ categoryName, src }) => {
+	const navigate = useNavigate();
+	return (
+		<div className='category-card'>
+			<h3>{categoryName}</h3>
+			<img src={src}></img>
+			<button onClick={() => navigate('/videos')} className='btn btn-primary'>
+				Watch Now!
+			</button>
+		</div>
+	);
+};

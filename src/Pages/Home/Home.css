@@ -28,7 +28,8 @@
 .category-card {
 	position: relative;
 	height: 30rem;
-	min-width: 25rem;
+	min-width: 30rem;
+	max-width: 60rem;
 	flex: 1 1 auto;
 	border-radius: 1rem;
 	margin: 2rem;
@@ -51,7 +52,6 @@
 }
 
 .category-card:hover img {
-	opacity: 0.7;
 	top: 5rem;
 	transition: all 0.3s ease;
 }
@@ -78,7 +78,7 @@
 	transition: all 0.3s ease;
 }
 .category-card:hover .btn {
-	bottom: 4rem;
+	bottom: -5px;
 	transition: all 0.3s ease;
 }
 

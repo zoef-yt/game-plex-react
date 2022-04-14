@@ -1,0 +1,30 @@
+.category-section {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0rem;
+	z-index: 1;
+	background-color: var(--colour-black-one);
+	padding: 2rem;
+}
+
+.category-items {
+	max-width: 90rem;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: calc(11.1rem + 2vw) repeat(1, minmax(calc(15.1rem + 2vw), max-content));
+	grid-template-rows: 1fr;
+	overflow-x: auto;
+	align-items: center;
+}
+
+.btn-category {
+	margin: 1rem 0;
+	width: 90%;
+	transition: all 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+	.category-items {
+		max-width: 90vw;
+	}
+}
