@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import './CategorySelectionBar.css';
 import { useCategory } from '../../../Context';
 

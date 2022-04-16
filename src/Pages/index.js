@@ -1,7 +1,10 @@
 export { Navbar } from './Components/Navbar/Navbar.jsx';
 export { Footer } from './Components/Footer/Footer.jsx';
 export { Home } from './Home/Home.jsx';
-export { VideoListingPage } from './VideoListingPage/VideoListingPage.jsx';
 export { PageNotFound } from './PageNotFound/PageNotFound.jsx';
-
+export { VideoListingPage } from './VideoListingPage/VideoListingPage.jsx';
+export { LikedVideosPage } from './LikedVideosPage/LikedVideosPage.jsx';
+export { HistoryPage } from './HistoryPage/HistoryPage.jsx';
+export { PlaylistPage } from './PlayListPage/PlaylistPage.jsx';
+export { WatchLaterPage } from './WatchLater/WatchLaterPage.jsx';
 export { AppRoutes } from './Components/Router/Router.jsx';

@@ -1,0 +1,17 @@
+.single-playlist > hr {
+	margin: 2rem 0;
+}
+
+.single-playlist .videos-hidden {
+	transform: scaleY(0.5);
+	display: none;
+}
+
+.single-playlist .videos-show {
+	transform: scaleY(1);
+	display: flex;
+}
+
+.playlist-heading {
+	cursor: pointer;
+}

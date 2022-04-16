@@ -1,10 +1,18 @@
-import { ThemeProvider, CategoryProvider, VideoProvider } from './index.js';
+import { ThemeProvider, CategoryProvider, VideoProvider, LikesProvider, HistoryProvider, PlaylistProvider, WatchLaterProvider } from './index.js';
 
 const Providers = ({ children }) => {
 	return (
 		<ThemeProvider>
 			<CategoryProvider>
-				<VideoProvider>{children}</VideoProvider>
+				<VideoProvider>
+					<LikesProvider>
+						<HistoryProvider>
+							<PlaylistProvider>
+								<WatchLaterProvider>{children}</WatchLaterProvider>
+							</PlaylistProvider>
+						</HistoryProvider>
+					</LikesProvider>
+				</VideoProvider>
 			</CategoryProvider>
 		</ThemeProvider>
 	);

@@ -1,8 +1,7 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './PageNotFound.css';
 
-function PageNotFound() {
+const PageNotFound = () => {
 	const navigate = useNavigate();
 	return (
 		<div className='app-main-content page-not-found'>
@@ -13,6 +12,6 @@ function PageNotFound() {
 			</button>
 		</div>
 	);
-}
+};
 
 export { PageNotFound };
