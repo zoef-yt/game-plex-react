@@ -1,0 +1,131 @@
+.video-listing-section {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	margin: 0 auto;
+	max-width: 1560px;
+}
+
+.video-card {
+	position: relative;
+	overflow: hidden;
+	margin: 0 2rem 2rem 0;
+	min-width: 24rem;
+	max-width: 29rem;
+	background-color: var(--colour-black-fifth);
+	border-radius: 0.5rem;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	box-shadow: 0 2px 5px var(--colour-dark-with-opacity);
+	perspective: 400px;
+}
+
+.video-card:hover {
+	box-shadow: 0 0.5rem 1rem var(--colour-dark-with-opacity);
+}
+
+.video-card .video-card-watch-later {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	right: 0;
+	padding: 5px;
+	background-color: var(--colour-accent-third);
+	color: var(--both-theme-white);
+	transform-origin: right;
+	transform: rotateY(-120deg);
+	transition: 200ms transform ease-in-out;
+}
+
+.video-card:hover .video-card-watch-later {
+	transform: rotateY(0deg);
+}
+
+.video-card .video-card-add-to-playlist {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 3rem;
+	right: 0;
+	padding: 5px;
+	background-color: var(--colour-accent-third);
+	color: var(--both-theme-white);
+	transform-origin: right;
+	transform: rotateY(-120deg);
+	transition: 350ms transform ease-in-out;
+}
+
+.video-card:hover .video-card-add-to-playlist {
+	transform: rotateY(0deg);
+}
+
+.video-card-title {
+	font-size: 2rem;
+	text-align: center;
+	font-weight: bold;
+	line-height: 1.5;
+	margin: 1rem 1rem 1rem 0.5rem;
+	text-overflow: ellipsis;
+	text-align: left;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	white-space: normal;
+}
+
+.video-card-creator {
+	margin: 0 0 0 1rem;
+}
+
+.video-card-podcast {
+	margin: 0 1rem 0 0;
+}
+
+.video-card img {
+	margin: 0 4rem 0 0;
+	width: 31rem;
+	height: 16rem;
+	object-fit: cover;
+}
+
+@media screen and (max-width: 1719px) {
+	.video-listing-section {
+		max-width: 1240px;
+	}
+}
+
+@media screen and (max-width: 1375px) {
+	.video-listing-section {
+		max-width: 940px;
+	}
+}
+
+@media screen and (max-width: 1031px) {
+	.video-listing-section {
+		max-width: 620px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.video-listing-section {
+		justify-content: center;
+	}
+
+	.video-card {
+		margin: 2rem;
+		max-width: 30rem;
+		padding: 0;
+	}
+
+	.video-card .video-card-watch-later {
+		transform: rotateY(0deg);
+	}
+
+	.video-card .video-card-add-to-playlist {
+		transform: rotateY(0deg);
+	}
+}

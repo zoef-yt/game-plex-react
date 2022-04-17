@@ -18,8 +18,8 @@ function Navbar() {
 						{theme === 'dark' ? <SunIcon className='header-icon ' /> : <HalfMoonIcon className='header-icon' />}
 					</div>
 					<div className='profile-modal-holder'>
-						<div className='avatar avatar-sm '>ZS</div>
-						<div className='profile-modal'>
+						<div className='avatar avatar-sm not-selectable '>ZS</div>
+						<div className='profile-modal not-selectable '>
 							<li>My Profile</li>
 							<hr />
 							<li>My Playlist</li>

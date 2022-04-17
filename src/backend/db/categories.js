@@ -1,4 +1,4 @@
-import { v4 as uuid } from "uuid";
+import { v4 as uuid } from 'uuid';
 
 /**
  * Category Database can be added here.
@@ -6,22 +6,45 @@ import { v4 as uuid } from "uuid";
  * */
 
 export const categories = [
-  {
-    _id: uuid(),
-    categoryName: "Computer Programming",
-    description:
-      "Computer programming is the process of designing and building an executable computer program to accomplish a specific computing",
-  },
-  {
-    _id: uuid(),
-    categoryName: "Frontend Development",
-    description:
-      "Front-end web development, also known as client-side development is the practice of producing HTML, CSS and JavaScript for a website or Web Application",
-  },
-  {
-    _id: uuid(),
-    categoryName: "Backend Development",
-    description:
-      "Backend Development is also known as server-side development. It is everything that the users don't see and contains behind-the-scenes activities that occur when performing any action on a website.",
-  },
+	{
+		_id: uuid(),
+		categoryName: 'Gameplay',
+		src: 'https://www.dexerto.com/wp-content/uploads/2021/12/21/pewdie-finally-returns-to-playing-minecraft-and-youtube-fans-are-losing-their-minds.jpg',
+	},
+	{
+		_id: uuid(),
+		categoryName: 'Vlog',
+		src: 'https://cdn.vox-cdn.com/thumbor/UCf4QIYEdCI-agfr44FgpNXfsoA=/0x24:1684x866/fit-in/1200x600/cdn.vox-cdn.com/uploads/chorus_asset/file/16294599/Screen_Shot_2019_05_23_at_7.43.34_AM.png',
+	},
+	{
+		_id: uuid(),
+		categoryName: 'FPS',
+		src: 'https://playvalorant.com/assets/video/game-overview-poster-launch.jpg',
+	},
+	{
+		_id: uuid(),
+		categoryName: 'Challenges',
+		src: 'https://i.ytimg.com/vi/jkPvIFRFUZg/hqdefault.jpg',
+	},
+
+	{
+		_id: uuid(),
+		categoryName: 'ScaryGames',
+		src: 'https://i.ytimg.com/vi/YRqayjGOpYc/maxresdefault.jpg',
+	},
+	{
+		_id: uuid(),
+		categoryName: 'Podcast',
+		src: 'https://i.ytimg.com/vi/3-kZAT3nLtA/maxresdefault.jpg',
+	},
+	{
+		_id: uuid(),
+		categoryName: 'Rage Gameplay',
+		src: 'https://i.ytimg.com/vi/C389KvxsuaI/maxresdefault.jpg',
+	},
+	{
+		_id: uuid(),
+		categoryName: 'Unboxing',
+		src: 'https://i.ytimg.com/vi/1IY7otlob34/maxresdefault.jpg',
+	},
 ];

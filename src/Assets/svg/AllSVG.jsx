@@ -20,4 +20,22 @@ function HalfMoonIcon(props) {
 	);
 }
 
-export { SunIcon, HalfMoonIcon };
+function AddToPlaylistIcon(props) {
+	return (
+		<svg width='25' height='25' viewBox='0 0 24 24' {...props}>
+			<path fill='currentColor' d='M14 10H3v2h11v-2zm0-4H3v2h11V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM3 16h7v-2H3v2z'></path>
+		</svg>
+	);
+}
+
+function WatchLaterIcon(props) {
+	return (
+		<svg width='25' height='25' viewBox='0 0 24 24' {...props}>
+			<path
+				fill='currentColor'
+				d='M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8s-8 3.58-8 8s3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13l.75 1.3L12.5 13Z'
+			></path>
+		</svg>
+	);
+}
+export { SunIcon, HalfMoonIcon, AddToPlaylistIcon, WatchLaterIcon };
