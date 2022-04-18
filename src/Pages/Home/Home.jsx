@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useCategory } from '../../Context';
+import { CategoryCard } from './CategoryCard';
 import './Home.css';
 const Home = () => {
 	const { categories, loadingCategories } = useCategory();
@@ -29,16 +30,3 @@ const Home = () => {
 };
 
 export { Home };
-
-const CategoryCard = ({ categoryName, src }) => {
-	const navigate = useNavigate();
-	return (
-		<div className='category-card'>
-			<h3>{categoryName}</h3>
-			<img src={src}></img>
-			<button onClick={() => navigate('/videos')} className='btn btn-primary'>
-				Select Category
-			</button>
-		</div>
-	);
-};

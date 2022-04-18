@@ -8,3 +8,4 @@ export { HistoryPage } from './HistoryPage/HistoryPage.jsx';
 export { PlaylistPage } from './PlayListPage/PlaylistPage.jsx';
 export { WatchLaterPage } from './WatchLater/WatchLaterPage.jsx';
 export { AppRoutes } from './Components/Router/Router.jsx';
+export { ModalComponent } from './Components/Modal/ModalComponent.jsx';

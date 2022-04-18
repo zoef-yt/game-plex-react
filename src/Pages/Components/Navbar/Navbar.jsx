@@ -1,10 +1,12 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { HalfMoonIcon, SunIcon } from '../../../Assets/svg/AllSVG';
-import { useTheme } from '../../../Context';
+import { HalfMoonIcon, SunIcon, VideoWithTVIcon } from '../../../Assets/svg/AllSVG';
+import { useAuth, useModal, useTheme } from '../../../Context';
 
 import './Navbar.css';
 const Navbar = () => {
+	const { openModal } = useModal();
 	const { theme, toggleTheme } = useTheme();
+	const { logoutHandler, user, isLogin } = useAuth();
 	return (
 		<nav className='navbar-mobile'>
 			<div className='navbar'>
@@ -13,23 +15,32 @@ const Navbar = () => {
 				</NavLink>
 				<input type='search' className='text-field' placeholder='Search For Games' />
 				<div className='navbar-cta'>
-					<NavLink to='/videos'>
-						<h5 className='header-icon'>Videos</h5>
-					</NavLink>
+					{user && (
+						<NavLink to='/videos'>
+							<VideoWithTVIcon className='header-icon' />
+						</NavLink>
+					)}
 					<div className='flex-column' onClick={toggleTheme}>
 						{theme === 'dark' ? <SunIcon className='header-icon' /> : <HalfMoonIcon className='header-icon' />}
 					</div>
-					<div className='profile-modal-holder'>
-						<div className='avatar avatar-sm not-selectable '>ZS</div>
-						<div className='profile-modal not-selectable '>
-							<ProfileModalLink text='My Profile' navigateTo={'/'} />
-							<ProfileModalLink text='My Playlist' navigateTo={'/my-playlists'} />
-							<ProfileModalLink text='Liked Videos' navigateTo={'/my-liked'} />
-							<ProfileModalLink text='History' navigateTo={'/my-history'} />
-							<ProfileModalLink text='Watch Later' navigateTo={'/my-watch-later'} />
-							<li>Logout 😞</li>
+					{user ? (
+						<div className='profile-modal-holder'>
+							<div className='avatar avatar-sm not-selectable '>{user?.userInfo.name.substring(0, 1).toUpperCase()}</div>
+							<div className='profile-modal not-selectable '>
+								{/*//!TODO Commented for future addition of profile page  */}
+								{/* <ProfileModalLink text='My Profile' navigateTo='/' /> */}
+								<ProfileModalLink text='My Playlist' navigateTo='/my-playlists' />
+								<ProfileModalLink text='Liked Videos' navigateTo='/my-liked' />
+								<ProfileModalLink text='History' navigateTo='/my-history' />
+								<ProfileModalLink text='Watch Later' navigateTo='/my-watch-later' />
+								<li onClick={() => logoutHandler()}>Logout 😞</li>
+							</div>
 						</div>
-					</div>
+					) : (
+						<button onClick={() => openModal('AuthModal')} className='btn btn-link'>
+							{isLogin ? 'Login' : 'Sign Up'}
+						</button>
+					)}
 				</div>
 			</div>
 			<input type='search' className='text-field mobile-searchbar' placeholder='Search For Games' />

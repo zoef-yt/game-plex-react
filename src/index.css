@@ -1,5 +1,16 @@
 @import url(https://unpkg.com/mockman-js@latest/dist/style.css);
 @import url('./Pages/VideoListingPage/VideoListingPage.css');
+
+:root {
+	--z-index-modal-level: 10;
+	--z-index-alert-level: 11;
+	--z-index-profile-modal-level: 9;
+	--z-index-card-level-2: 8;
+	--z-index-card-level-1: 7;
+	--z-index-card-level-0: 6;
+	--z-index-low-level-1: 5;
+	--z-index-low-level-2: 4;
+}
 .game-plex-app {
 	display: grid;
 	grid-template-columns: 1fr;
@@ -12,6 +23,10 @@
 	min-height: 100vh;
 	max-height: 100%;
 	width: 100%;
+}
+
+.modal-opened {
+	z-index: var(--z-index-modal-level);
 }
 
 .app-main-content {
