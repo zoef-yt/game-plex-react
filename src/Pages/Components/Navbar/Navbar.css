@@ -8,7 +8,6 @@
 .navbar-brand {
 	margin: 0 2rem;
 	max-width: 100%;
-	width: 100%;
 	color: var(--colour-text-white);
 	font-size: calc(2.2rem + 0.9vw);
 	font-weight: 500;
@@ -28,9 +27,7 @@
 	justify-content: flex-end;
 	align-items: center;
 	gap: 2rem;
-
 	max-width: 100%;
-	width: 100%;
 }
 
 .navbar-cta svg {
@@ -56,6 +53,15 @@
 
 .navbar-cta .badge-holder img {
 	flex-shrink: 0;
+}
+
+.header-icon {
+	color: var(--colour-text-white);
+}
+
+.header-icon:hover {
+	cursor: pointer;
+	color: var(--colour-primary);
 }
 
 .profile-modal-holder {
@@ -130,6 +136,11 @@
 	.navbar-mobile .navbar-cta .badge-holder {
 		display: none;
 	}
+
+	/* !TODO Commented to fix an issue */
+	/* .navbar-mobile .profile-modal > *:hover > *:parent {
+		display: none;
+	} */
 }
 
 @media screen and (min-width: 768px) {

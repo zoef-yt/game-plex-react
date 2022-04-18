@@ -1,8 +1,7 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCategory } from '../../Context';
 import './Home.css';
-function Home() {
+const Home = () => {
 	const { categories, loadingCategories } = useCategory();
 	return (
 		<div className='app-main-content home-body'>
@@ -27,7 +26,7 @@ function Home() {
 			</section>
 		</div>
 	);
-}
+};
 
 export { Home };
 
@@ -38,7 +37,7 @@ const CategoryCard = ({ categoryName, src }) => {
 			<h3>{categoryName}</h3>
 			<img src={src}></img>
 			<button onClick={() => navigate('/videos')} className='btn btn-primary'>
-				Watch Now!
+				Select Category
 			</button>
 		</div>
 	);

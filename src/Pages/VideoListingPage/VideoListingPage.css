@@ -2,7 +2,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-start;
-	margin: 0 auto;
+	margin: 2rem auto 0 auto;
 	max-width: 1560px;
 }
 
@@ -13,15 +13,31 @@
 	min-width: 24rem;
 	max-width: 29rem;
 	background-color: var(--colour-black-fifth);
-	border-radius: 0.5rem;
+	border-radius: 5px;
 	cursor: pointer;
-	transition: all 0.3s ease-in-out;
 	box-shadow: 0 2px 5px var(--colour-dark-with-opacity);
 	perspective: 400px;
+	animation-name: card-animation;
+	animation-duration: 400ms;
+}
+
+@keyframes card-animation {
+	0% {
+		opacity: 0;
+		transform: scale(0.8);
+	}
+	50% {
+		opacity: 0.8;
+		transform: scale(1.02);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
 }
 
 .video-card:hover {
-	box-shadow: 0 0.5rem 1rem var(--colour-dark-with-opacity);
+	box-shadow: 0 5px 1rem var(--colour-dark-with-opacity);
 }
 
 .video-card .video-card-watch-later {
@@ -43,6 +59,11 @@
 	transform: rotateY(0deg);
 }
 
+.video-listing-section .video-card .video-card-in-watch-later {
+	transform: rotateY(0deg);
+	color: var(--colour-accent-one);
+}
+
 .video-card .video-card-add-to-playlist {
 	position: absolute;
 	display: flex;
@@ -62,12 +83,17 @@
 	transform: rotateY(0deg);
 }
 
+.video-listing-section .video-card .video-card-in-playlist {
+	transform: rotateY(0deg);
+	color: var(--colour-accent-one);
+}
+
 .video-card-title {
 	font-size: 2rem;
 	text-align: center;
 	font-weight: bold;
 	line-height: 1.5;
-	margin: 1rem 1rem 1rem 0.5rem;
+	margin: 1rem 1rem 1rem 5px;
 	text-overflow: ellipsis;
 	text-align: left;
 	overflow: hidden;

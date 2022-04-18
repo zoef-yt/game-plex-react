@@ -1,6 +1,6 @@
 import React from 'react';
 import { Footer, Navbar, AppRoutes } from './Pages/index';
-function App() {
+const App = () => {
 	return (
 		<div className='game-plex-app'>
 			<Navbar />
@@ -8,6 +8,6 @@ function App() {
 			<Footer />
 		</div>
 	);
-}
+};
 
 export { App };

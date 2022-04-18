@@ -111,7 +111,7 @@
 
 	.category-card .btn {
 		position: absolute;
-		bottom: 0rem;
+		bottom: 0;
 	}
 
 	.category-card:hover .btn {
