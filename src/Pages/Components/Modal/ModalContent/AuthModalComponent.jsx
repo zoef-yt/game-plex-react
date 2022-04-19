@@ -4,7 +4,7 @@ import { useAuth, useModal } from '../../../../Context';
 import './AuthModalComponent.css';
 
 const AuthModalComponent = () => {
-	const { isLogin, isLoading, error, toggleIsLogin, signUpHandler, loginHandler, errorHandler } = useAuth();
+	const { isLoginModal, isLoading, error, toggleIsLogin, signUpHandler, loginHandler, errorHandler } = useAuth();
 	const [showPassword, setShowPassword] = useState({ password: false, confirmPassword: false });
 	const { closeModal } = useModal();
 	const defaultText = {
@@ -25,6 +25,11 @@ const AuthModalComponent = () => {
 
 	const [textFields, setTextFields] = useState(defaultText);
 
+	const loginSignUpToggler = () => {
+		toggleIsLogin();
+		errorHandler(false, '');
+		setShowPassword({ password: false, confirmPassword: false });
+	};
 	const setUserDetails = (e) => {
 		errorHandler(false, '');
 		setTextFields({
@@ -74,7 +79,7 @@ const AuthModalComponent = () => {
 						/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 					)
 				? password.length > 5
-					? (loginHandler({ email: email, password: password }), true)
+					? loginHandler({ email: email, password: password })
 					: (errorHandler(true, 'Password cannot be shorter than 6 characters'), setTextFields({ ...textFields, passWordError: true }))
 				: (errorHandler(true, 'Email is invalid'), setTextFields({ ...textFields, emailError: true }))
 			: (setTextFields({ ...textFields, emailError: true }), errorHandler(true, 'Email is required'));
@@ -86,9 +91,9 @@ const AuthModalComponent = () => {
 
 	return (
 		<div className='modal-card flex-column align-items-center space-evenly' onClick={(e) => e.stopPropagation()}>
-			<h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
+			<h1>{isLoginModal ? 'Login' : 'Sign Up'}</h1>
 			<div className='input-group'>
-				{!isLogin && (
+				{!isLoginModal && (
 					<InputField
 						labelText='Name'
 						type='text'
@@ -102,7 +107,7 @@ const AuthModalComponent = () => {
 					labelText='Email Address'
 					type='email'
 					name='email'
-					onChange={(event) => setUserDetails(event)}
+					onChange={setUserDetails}
 					hasError={textFields.emailError}
 					value={textFields.email}
 				/>
@@ -110,19 +115,19 @@ const AuthModalComponent = () => {
 					labelText='Password'
 					type={!showPassword.password ? 'password' : 'text'}
 					name='password'
-					onChange={(event) => setUserDetails(event)}
+					onChange={setUserDetails}
 					hasError={textFields.passWordError}
 					value={textFields.password}
 					passwordType={'password'}
 					onClick={togglePassword}
 				/>
-				{!isLogin && (
+				{!isLoginModal && (
 					<>
 						<InputField
 							labelText='Confirm password'
 							type={!showPassword.confirmPassword ? 'password' : 'text'}
 							name='confirmPassword'
-							onChange={(event) => setUserDetails(event)}
+							onChange={setUserDetails}
 							hasError={textFields.confirmPasswordError}
 							value={textFields.confirmPassword}
 							onClick={togglePassword}
@@ -132,7 +137,7 @@ const AuthModalComponent = () => {
 				)}
 			</div>
 
-			{isLogin && (
+			{isLoginModal && (
 				<p
 					onClick={() =>
 						setTextFields({
@@ -149,10 +154,11 @@ const AuthModalComponent = () => {
 
 			<button
 				onClick={
-					isLogin
+					isLoginModal
 						? async () => {
 								const success = await loginChecker();
-								success ? (closeModal(), setTextFields(defaultText)) : null;
+								console.log(success);
+								success && (closeModal(), setTextFields(defaultText));
 						  }
 						: () => {
 								signupChecker();
@@ -160,18 +166,11 @@ const AuthModalComponent = () => {
 				}
 				className={`btn modal-button ${isLoading ? 'modal-btn-disabled' : 'btn-primary'}`}
 			>
-				{isLoading ? 'Loading...' : isLogin ? 'Login' : 'SignUp'}
+				{isLoading ? 'Loading...' : isLoginModal ? 'Login' : 'SignUp'}
 			</button>
 			{error.hasError && <p className='modal-error'> *{error.errorMessage} </p>}
-			<button
-				onClick={() => {
-					toggleIsLogin();
-					errorHandler(false, '');
-					setShowPassword({ password: false, confirmPassword: false });
-				}}
-				className=' btn-link btn'
-			>
-				{isLogin ? "Don't have account? Sign up!" : 'Already have account? Log In!'}
+			<button onClick={loginSignUpToggler} className=' btn-link btn'>
+				{isLoginModal ? "Don't have account? Sign up!" : 'Already have account? Log In!'}
 			</button>
 		</div>
 	);

@@ -6,7 +6,7 @@ import './Navbar.css';
 const Navbar = () => {
 	const { openModal } = useModal();
 	const { theme, toggleTheme } = useTheme();
-	const { logoutHandler, user, isLogin } = useAuth();
+	const { logoutHandler, user, isLoginModal } = useAuth();
 	return (
 		<nav className='navbar-mobile'>
 			<div className='navbar'>
@@ -38,7 +38,7 @@ const Navbar = () => {
 						</div>
 					) : (
 						<button onClick={() => openModal('AuthModal')} className='btn btn-link'>
-							{isLogin ? 'Login' : 'Sign Up'}
+							{isLoginModal ? 'Login' : 'Sign Up'}
 						</button>
 					)}
 				</div>

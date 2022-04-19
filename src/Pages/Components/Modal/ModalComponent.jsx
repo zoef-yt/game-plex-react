@@ -6,11 +6,8 @@ const ModalComponent = ({ isModalOpened, closeModal, modalChildComponent }) => {
 			case 'AuthModal':
 				return <AuthModalComponent />;
 			default:
-				return (
-					<button className='btn btn-secondary' onClick={closeModal}>
-						Close
-					</button>
-				);
+				closeModal();
+				return <></>;
 		}
 	};
 	return (
