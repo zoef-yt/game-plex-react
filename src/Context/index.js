@@ -5,3 +5,5 @@ export { LikesProvider, useLikes } from './LikedVideosContext/LikedVideosContext
 export { HistoryProvider, useHistory } from './HistoryContext/HistoryContext.jsx';
 export { WatchLaterProvider, useWatchLater } from './WatchLaterContext/WatchLaterContext.jsx';
 export { PlaylistProvider, usePlaylist } from './PlaylistContext/PlaylistContext.jsx';
+export { ModalProvider, useModal } from './ModalContext/ModalContext.jsx';
+export { AuthProvider, useAuth } from './AuthContext/AuthContext.jsx';

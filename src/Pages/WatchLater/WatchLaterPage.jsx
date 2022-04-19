@@ -14,8 +14,8 @@ const WatchLaterPage = () => {
 				<>
 					<div className='video-listing-section text-grey'>Showing result:- {watchLaterList.length}</div>
 					<div className='video-listing-section'>
-						{watchLaterList.map((video) => (
-							<VideoCard key={video._id} video={video} watchLaterClass={'video-card-in-watch-later'} />
+						{watchLaterList.map((video, index) => (
+							<VideoCard key={video._id} video={video} watchLaterClass={'video-card-in-watch-later'} index={index} />
 						))}
 					</div>
 				</>

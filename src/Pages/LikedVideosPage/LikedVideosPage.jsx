@@ -13,8 +13,8 @@ const LikedVideosPage = () => {
 				<>
 					<div className='video-listing-section text-grey'>Showing result:- {likesList.length}</div>
 					<div className='video-listing-section'>
-						{likesList.map((video) => (
-							<VideoCard key={video._id} video={video} />
+						{likesList.map((video, index) => (
+							<VideoCard key={video._id} video={video} index={index} />
 						))}
 					</div>
 				</>

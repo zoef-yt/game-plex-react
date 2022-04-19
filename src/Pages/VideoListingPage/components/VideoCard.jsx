@@ -1,8 +1,13 @@
 import { AddToPlaylistIcon, WatchLaterIcon } from '../../../Assets/svg/AllSVG.jsx';
-const VideoCard = ({ video, cardClass = '', watchLaterClass = '', playListClass = '', index = 1 }) => {
+const VideoCard = ({ video, cardClass = '', watchLaterClass = '', playListClass = '', index }) => {
+	const getDelayedAnimation = (index) => {
+		const baseDelay = 40,
+			delayMultiplier = 80;
+		return baseDelay + index * delayMultiplier;
+	};
 	const { _id, title, creator, categoryName } = video;
 	return (
-		<div style={{ animationDuration: `${400 + index * 30 > 1000 ? 1000 : 400 + index * 50}ms` }} className={`video-card ${cardClass}`}>
+		<div style={{ animationDelay: `${getDelayedAnimation(index)}ms` }} className={`video-card ${cardClass}`}>
 			<img src={`https://i.ytimg.com/vi/${_id}/hqdefault.jpg`} />
 			<div className={`video-card-watch-later ${watchLaterClass}`}>
 				<WatchLaterIcon />

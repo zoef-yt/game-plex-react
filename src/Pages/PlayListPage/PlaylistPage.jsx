@@ -9,7 +9,7 @@ const PlaylistPage = () => {
 	return (
 		<div className='app-main-content'>
 			<h1 className='text-align-center'>Playlists</h1>
-			{playlist != undefined && playlist.length < 1 ? (
+			{playlist && playlist.length < 1 ? (
 				<h3 className='text-align-center'>No playlist to show</h3>
 			) : (
 				<div className='video-listing-section'>
@@ -32,15 +32,15 @@ const SinglePlaylist = ({ videos, name }) => {
 			<h3
 				className='playlist-heading'
 				onClick={() => {
-					setPlaylistToggle(!playlistToggle);
+					setPlaylistToggle((prev) => !prev);
 				}}
 			>
 				{name}({videos.length}) <span>{playlistToggle ? <ExpandMoreIcon /> : <ExpandLessIcon />}</span>
 			</h3>
 			<hr />
 			<div className={`video-listing-section width-100 ${playlistToggle ? 'videos-hidden' : 'videos-show'}`}>
-				{videos.map((video) => (
-					<VideoCard key={video._id} video={video} playListClass={'video-card-in-playlist'} />
+				{videos.map((video, index) => (
+					<VideoCard key={video._id} video={video} playListClass={'video-card-in-playlist'} index={index} />
 				))}
 			</div>
 		</div>
