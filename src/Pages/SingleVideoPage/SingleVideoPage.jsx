@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './SingleVideoPage.css';
-import { useAuth, useModal, useVideo, useWatchLater } from '../../Context';
+import { useAuth, useLikes, useModal, useVideo, useWatchLater } from '../../Context';
 import { SuggestedVideos } from './SuggestedVideos';
 import { VideoPlayer } from './VideoPlayer';
 import { AddToPlaylistIcon, FilledWatchLaterIcon, LikeFilledIcon, LikeIcon, WatchLaterIcon } from '../../Assets/svg/AllSVG';
@@ -18,6 +18,7 @@ const SingleVideoPage = () => {
 	}, [videoURLId, videos]);
 
 	const randomlySortedVideos = [...videos].sort(() => Math.random() - 0.5);
+	const { likesList, removeVideoFromLike, addVideoToLike } = useLikes();
 	const { watchLaterList, addToWatchLater, removeFromWatchLater } = useWatchLater();
 	const { user } = useAuth();
 	const { openModal } = useModal();
@@ -25,6 +26,11 @@ const SingleVideoPage = () => {
 	const isVideoInWatchLater = watchLaterList?.findIndex((vid) => vid._id === videoURLId) === -1 ? false : true;
 	const addToWatchLaterHandler = (vid) => {
 		user ? (isVideoInWatchLater ? removeFromWatchLater(vid._id) : addToWatchLater(vid)) : openModal('AuthModal');
+	};
+
+	const isVideoLiked = likesList?.findIndex((vid) => vid._id === videoURLId) === -1 ? false : true;
+	const likeHandler = (vid) => {
+		user ? (isVideoLiked ? removeVideoFromLike(vid._id) : addVideoToLike(vid)) : openModal('AuthModal');
 	};
 	return (
 		<div className='video-page-body'>
@@ -36,10 +42,11 @@ const SingleVideoPage = () => {
 							<div className='video-description'>
 								<p className='video-title'>{currentVideoDetail.title}</p>
 								<div className='video-cta not-selectable'>
-									<div className='cta-btn'>
-										<LikeIcon /> Like
-										{/*//!TODO Commented for future  */}
-										{/* <LikeFilledIcon /> */}
+									<div
+										onClick={() => likeHandler(currentVideoDetail)}
+										className={`cta-btn ${isVideoLiked ? 'cta-btn-selected' : ''}`}
+									>
+										{isVideoLiked ? <LikeFilledIcon /> : <LikeIcon />}Like
 									</div>
 									<div
 										className={`cta-btn ${isVideoInWatchLater ? 'cta-btn-selected' : ''}`}
@@ -61,12 +68,10 @@ const SingleVideoPage = () => {
 						</div>
 
 						<hr />
-						<section className='creator-description'>
+						<div className='creator-description'>
 							<div className='avatar avatar-sm not-selectable '>{currentVideoDetail.creator?.substring(0, 1).toUpperCase()}</div>
-							<div className='creator-info'>
-								<p className='creator-name'>{currentVideoDetail.creator}</p>
-							</div>
-						</section>
+							<p className='creator-name'>{currentVideoDetail.creator}</p>
+						</div>
 
 						<section className='video-description-text'>
 							<p>{currentVideoDetail.description}</p>

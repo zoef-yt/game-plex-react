@@ -57,7 +57,23 @@
 	-ms-user-select: none;
 	user-select: none;
 }
+
+.btn-fab {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5rem;
+	border: 1px solid transparent;
+	padding: 1rem;
+	cursor: pointer;
+	aspect-ratio: unset;
+}
+
 @media screen and (max-width: 768px) {
+	.btn-fab > p {
+		display: none;
+	}
+
 	.game-plex-app {
 		display: grid;
 		grid-template-columns: 1fr;

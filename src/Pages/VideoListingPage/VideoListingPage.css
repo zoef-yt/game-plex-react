@@ -88,13 +88,34 @@
 .video-card:hover .video-card-add-to-playlist {
 	transform: rotateY(0deg);
 }
+
 .video-card-add-to-playlist:hover {
 	color: var(--colour-accent-one);
 }
 
-.video-listing-section .video-card .video-card-in-playlist {
+.video-card .video-card-in-playlist {
 	transform: rotateY(0deg);
 	color: var(--colour-accent-one);
+}
+
+.video-card .video-card-delete-button {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 1rem 0 0 1rem;
+	top: 12rem;
+	right: 0;
+	padding: 5px;
+	background-color: var(--colour-error);
+	color: var(--both-theme-white);
+	transform-origin: right;
+	transform: rotateY(-120deg);
+	transition: 300ms transform ease-in-out;
+}
+
+.video-card:hover .video-card-delete-button {
+	transform: rotateY(0deg);
 }
 
 .video-card-title {
@@ -158,9 +179,20 @@
 
 	.video-card .video-card-watch-later {
 		transform: rotateY(0deg);
+		min-height: 4rem;
+		min-width: 4rem;
 	}
 
 	.video-card .video-card-add-to-playlist {
 		transform: rotateY(0deg);
+		min-height: 4rem;
+		min-width: 4rem;
+	}
+
+	.video-card .video-card-delete-button {
+		transform: rotateY(0deg);
+		min-height: 4rem;
+		min-width: 4rem;
+		top: 11rem;
 	}
 }
