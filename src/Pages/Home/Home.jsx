@@ -20,7 +20,7 @@ const Home = () => {
 				<h1>All Categories</h1>
 				<hr />
 
-				<div className='categories-listing'>
+				<div className='categories-listing video-listing-section'>
 					{!loadingCategories &&
 						categories.map(({ _id, categoryName, src }) => <CategoryCard key={_id} categoryName={categoryName} src={src} />)}
 				</div>

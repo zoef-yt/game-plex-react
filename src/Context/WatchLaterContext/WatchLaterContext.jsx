@@ -4,11 +4,48 @@ import { useAxios } from '../../CustomHooks/useAxios';
 const WatchLaterContext = createContext();
 
 const WatchLaterProvider = ({ children }) => {
-	const [watchLaterList, useWatchLaterList] = useState([
-		{ _id: 'O-w-NKMowIY', title: 'Valorant Skin Challenge | Zoef Games', creator: 'Zoef Games', categoryName: 'Challenges', id: '1' },
-		{ _id: 'SzuoB4_RpT4', title: "Marvel's Avengers Review(*NO SPOLIERS*)", creator: 'Zoef Games', categoryName: 'Podcast', id: '2' },
-	]);
-	return <WatchLaterContext.Provider value={{ watchLaterList }}>{children}</WatchLaterContext.Provider>;
+	const [watchLaterList, setWatchLaterList] = useState([]);
+	const { response: watchLaterResponse, operation: watchLaterServerCall, loading: loadingWatch, error: watchLaterError } = useAxios();
+	const token = localStorage.getItem('token');
+
+	useEffect(() => {
+		if (watchLaterResponse != null && watchLaterResponse.watchlater) {
+			setWatchLaterList(watchLaterResponse.watchlater);
+		} else {
+			getWatchLater();
+		}
+	}, [watchLaterResponse]);
+
+	useEffect(() => {
+		console.log(watchLaterError?.response);
+	}, [watchLaterError]);
+
+	const getWatchLater = () => {
+		watchLaterServerCall({
+			method: 'GET',
+			url: '/api/user/watchlater',
+			headers: { authorization: token },
+		});
+	};
+
+	const addToWatchLater = (video) => {
+		watchLaterServerCall({
+			method: 'post',
+			url: '/api/user/watchlater',
+			data: { video },
+			headers: { authorization: token },
+		});
+	};
+
+	const removeFromWatchLater = (videoId) => {
+		watchLaterServerCall({
+			method: 'delete',
+			url: `/api/user/watchlater/${videoId}`,
+			headers: { authorization: token },
+		});
+	};
+
+	return <WatchLaterContext.Provider value={{ watchLaterList, addToWatchLater, removeFromWatchLater }}>{children}</WatchLaterContext.Provider>;
 };
 
 const useWatchLater = () => useContext(WatchLaterContext);
