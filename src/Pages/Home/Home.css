@@ -37,6 +37,7 @@
 	box-shadow: 2px 2px 5px var(--colour-dark-with-opacity);
 	transition: all 0.3s ease;
 	overflow: hidden;
+	cursor: pointer;
 }
 
 .category-card img {
