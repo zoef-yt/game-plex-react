@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { AddToPlaylistIcon, DeleteIcon, FilledWatchLaterIcon, WatchLaterIcon } from '../../../Assets/svg/AllSVG.jsx';
-import { useAuth, useHistory, useModal, useWatchLater } from '../../../Context/index.js';
+import { useAuth, useHistory, useModal, usePlaylist, useWatchLater } from '../../../Context/index.js';
 import '../VideoListingPage.css';
 const VideoCard = ({ video, cardClass = '', watchLaterClass = '', playListClass = '', index, canDelete = false, deleteOnClick }) => {
 	const getDelayedAnimation = (index) => {
@@ -32,9 +32,9 @@ const VideoCard = ({ video, cardClass = '', watchLaterClass = '', playListClass 
 		user ? (isVideoInWatchLater ? removeFromWatchLater(vid._id) : addToWatchLater(vid)) : openModal('AuthModal');
 	};
 
-	const addToPlaylistHandler = () => {
-		//!TODO THIS CONSOLE LOG IS FOR FUTURE CODE.
-		user ? console.log('adding to playlist') : openModal('AuthModal');
+	const { selectCurrentVideo } = usePlaylist();
+	const addToPlaylistHandler = (vid) => {
+		user ? (openModal('PlaylistModal'), selectCurrentVideo(vid)) : openModal('AuthModal');
 	};
 
 	return (
@@ -46,7 +46,7 @@ const VideoCard = ({ video, cardClass = '', watchLaterClass = '', playListClass 
 			>
 				{isVideoInWatchLater ? <FilledWatchLaterIcon /> : <WatchLaterIcon />}
 			</div>
-			<div onClick={addToPlaylistHandler} className={`video-card-add-to-playlist ${playListClass}`}>
+			<div onClick={() => addToPlaylistHandler(video)} className={`video-card-add-to-playlist ${playListClass}`}>
 				<AddToPlaylistIcon />
 			</div>
 

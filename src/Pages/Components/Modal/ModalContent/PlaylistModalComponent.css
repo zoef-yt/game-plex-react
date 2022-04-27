@@ -1,0 +1,34 @@
+.create-playlist-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: 20px;
+}
+.create-playlist-form p {
+	color: var(--colour-error);
+	font-weight: bold;
+}
+.modal-playlist-container {
+	width: 30ch;
+	padding: 5px;
+	max-height: 30rem;
+	overflow-y: auto;
+}
+
+.modal-single-playlist-pills {
+	border: 1px solid var(--colour-secondary);
+	cursor: pointer;
+	border-radius: 5px;
+	margin: 1rem 0;
+	padding: 1rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.modal-playlist-container .modal-single-playlist-pills-active {
+	color: var(--colour-accent-one);
+	border-color: var(--colour-accent-one);
+}

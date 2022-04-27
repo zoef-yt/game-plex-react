@@ -4,39 +4,99 @@ import { useAxios } from '../../CustomHooks/useAxios';
 const PlaylistContext = createContext();
 
 const PlaylistProvider = ({ children }) => {
-	const [playlist, usePlaylist] = useState([
-		{
-			_id: 'first',
-			name: 'First playlist',
-			videos: [
-				{ _id: 'O-w-NKMowIY', title: 'Valorant Skin Challenge | Zoef Games', creator: 'Zoef Games', categoryName: 'Challenges', id: '1' },
-				{ _id: 'SzuoB4_RpT4', title: "Marvel's Avengers Review(*NO SPOLIERS*)", creator: 'Zoef Games', categoryName: 'Podcast', id: '2' },
-				{ _id: 'O-w-NKMowIY', title: 'Valorant Skin Challenge | Zoef Games', creator: 'Zoef Games', categoryName: 'Challenges', id: '1' },
-				{ _id: 'SzuoB4_RpT4', title: "Marvel's Avengers Review(*NO SPOLIERS*)", creator: 'Zoef Games', categoryName: 'Podcast', id: '2' },
-				{ _id: 'O-w-NKMowIY', title: 'Valorant Skin Challenge | Zoef Games', creator: 'Zoef Games', categoryName: 'Challenges', id: '1' },
-				{ _id: 'SzuoB4_RpT4', title: "Marvel's Avengers Review(*NO SPOLIERS*)", creator: 'Zoef Games', categoryName: 'Podcast', id: '2' },
-				{ _id: 'O-w-NKMowIY', title: 'Valorant Skin Challenge | Zoef Games', creator: 'Zoef Games', categoryName: 'Challenges', id: '1' },
-				{ _id: 'SzuoB4_RpT4', title: "Marvel's Avengers Review(*NO SPOLIERS*)", creator: 'Zoef Games', categoryName: 'Podcast', id: '2' },
-			],
-		},
-		{
-			_id: 'second',
-			name: 'Second playlist',
-			videos: [
-				{ _id: 'O-w-NKMowIY', title: 'Valorant Skin Challenge | Zoef Games', creator: 'Zoef Games', categoryName: 'Challenges', id: '1' },
-				{ _id: 'SzuoB4_RpT4', title: "Marvel's Avengers Review(*NO SPOLIERS*)", creator: 'Zoef Games', categoryName: 'Podcast', id: '2' },
-			],
-		},
-		{
-			_id: 'third',
-			name: 'Third playlist',
-			videos: [
-				{ _id: 'O-w-NKMowIY', title: 'Valorant Skin Challenge | Zoef Games', creator: 'Zoef Games', categoryName: 'Challenges', id: '1' },
-				{ _id: 'SzuoB4_RpT4', title: "Marvel's Avengers Review(*NO SPOLIERS*)", creator: 'Zoef Games', categoryName: 'Podcast', id: '2' },
-			],
-		},
-	]);
-	return <PlaylistContext.Provider value={{ playlist }}>{children}</PlaylistContext.Provider>;
+	const [playlists, setPlaylist] = useState({ playlists: [] });
+	const [currentVideo, setCurrentVideo] = useState(null);
+	const { response: playlistResponse, operation: playlistServerCall, error: playlistError } = useAxios();
+
+	const token = localStorage.getItem('token');
+
+	useEffect(() => {
+		if (playlistResponse != null && playlistResponse.playlists) {
+			setPlaylist(playlistResponse);
+		} else {
+			getPlaylists();
+		}
+
+		if (playlistResponse != null && playlistResponse.playlist) {
+			const updatedPlaylists = playlists.playlists.map((playlist) => {
+				return playlist._id === playlistResponse.playlist._id ? playlistResponse.playlist : playlist;
+			});
+			setPlaylist({ playlists: updatedPlaylists });
+		}
+	}, [playlistResponse]);
+
+	useEffect(() => {
+		if (playlistError) {
+			console.log(playlistError);
+		}
+	}, [playlistError]);
+
+	const selectCurrentVideo = (vid) => {
+		setCurrentVideo(vid);
+	};
+
+	const removeCurrentVideo = () => {
+		setCurrentVideo(null);
+	};
+
+	const getPlaylists = () => {
+		playlistServerCall({
+			method: 'get',
+			url: '/api/user/playlists',
+			headers: { authorization: token },
+		});
+	};
+
+	const createPlaylist = (newPlaylist) => {
+		playlistServerCall({
+			method: 'post',
+			url: '/api/user/playlists',
+			data: newPlaylist,
+			headers: { authorization: token },
+		});
+	};
+
+	const deleteSinglePlaylist = (playlistId) => {
+		playlistServerCall({
+			method: 'delete',
+			url: `/api/user/playlists/${playlistId}`,
+			headers: { authorization: token },
+		});
+	};
+
+	const postVideoToSinglePlaylist = (video, playlistId) => {
+		playlistServerCall({
+			method: 'post',
+			url: `/api/user/playlists/${playlistId}`,
+			data: { video: video },
+			headers: { authorization: token },
+		});
+	};
+
+	const deleteSingleVideoFromPlaylist = (videoId, playlistId) => {
+		playlistServerCall({
+			method: 'delete',
+			url: `/api/user/playlists/${playlistId}/${videoId}`,
+			headers: { authorization: token },
+		});
+	};
+
+	return (
+		<PlaylistContext.Provider
+			value={{
+				currentVideo,
+				playlists,
+				createPlaylist,
+				deleteSinglePlaylist,
+				selectCurrentVideo,
+				removeCurrentVideo,
+				postVideoToSinglePlaylist,
+				deleteSingleVideoFromPlaylist,
+			}}
+		>
+			{children}
+		</PlaylistContext.Provider>
+	);
 };
 
 const usePlaylist = () => useContext(PlaylistContext);
