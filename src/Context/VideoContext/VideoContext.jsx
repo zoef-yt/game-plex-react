@@ -11,12 +11,14 @@ const VideoProvider = ({ children }) => {
 	useEffect(() => {
 		videosResponse?.videos ? setVideos(videosResponse.videos) : getVideos();
 	}, [videosResponse]);
+
 	const getVideos = () => {
 		fetchVideo({
 			method: 'GET',
 			url: '/api/videos',
 		});
 	};
+
 	return <VideoContext.Provider value={{ videos, loadingVideos }}>{children}</VideoContext.Provider>;
 };
 

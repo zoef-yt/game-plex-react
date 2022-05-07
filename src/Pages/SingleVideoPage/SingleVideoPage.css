@@ -1,0 +1,146 @@
+.video-page-body {
+	min-height: 100%;
+	max-width: 80%;
+	width: 100%;
+	display: grid;
+	grid-template-columns: 80% 20%;
+	grid-template-areas: 'video-section suggestion-section';
+	margin: 0 auto 0 auto;
+}
+.video-section {
+	grid-area: video-section;
+}
+
+.suggestion-section {
+	grid-area: suggestion-section;
+	max-height: 87vh;
+	height: 100%;
+	margin: 0 auto;
+	overflow-y: auto;
+}
+
+.video-player {
+	height: 35vw;
+	margin: 0 2rem 2rem 0;
+}
+
+.video-player iframe {
+	height: 100%;
+	width: 100%;
+}
+
+.video-details {
+	margin-right: 2rem;
+}
+
+.video-description {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.video-description > * {
+	margin: 0.5rem 0;
+}
+
+.video-title {
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.video-cta {
+	display: flex;
+	justify-content: space-between;
+}
+
+.cta-btn {
+	display: flex;
+	align-items: center;
+	margin-right: 1rem;
+	cursor: pointer;
+}
+
+.cta-btn:hover {
+	color: var(--colour-primary);
+}
+.cta-btn-selected {
+	color: var(--colour-primary);
+}
+@media screen and (min-width: 2019px) {
+	.video-page-body {
+		max-width: 80%;
+	}
+
+	.video-player {
+		height: 35vw;
+	}
+}
+
+@media screen and (max-width: 1719px) {
+}
+
+@media screen and (max-width: 1375px) {
+	.video-page-body {
+		height: 100%;
+		grid-template-rows: 1fr 50rem;
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'video-section'
+			'suggestion-section';
+	}
+
+	.video-player {
+		height: 50vh;
+	}
+
+	.suggestion-section {
+		grid-area: suggestion-section;
+		min-height: 40rem;
+		margin: 1rem auto;
+		overflow-y: auto;
+	}
+
+	.video-details {
+		margin: 0;
+	}
+}
+
+@media screen and (max-width: 1031px) {
+	.video-page-body {
+		height: 100%;
+		grid-template-rows: 1fr 50rem;
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'video-section'
+			'suggestion-section';
+	}
+
+	.video-player {
+		height: 40vh;
+		margin: 0;
+	}
+
+	.video-cta {
+		flex-wrap: wrap;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.video-page-body {
+		max-width: 90%;
+		height: 100%;
+		grid-template-rows: 1fr 40rem;
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'video-section'
+			'suggestion-section';
+	}
+
+	.video-player {
+		overflow: hidden;
+		position: relative;
+		height: 40vh;
+	}
+}

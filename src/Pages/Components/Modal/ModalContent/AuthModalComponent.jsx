@@ -157,7 +157,6 @@ const AuthModalComponent = () => {
 					isLoginModal
 						? async () => {
 								const success = await loginChecker();
-								console.log(success);
 								success && (closeModal(), setTextFields(defaultText));
 						  }
 						: () => {

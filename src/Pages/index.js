@@ -9,3 +9,4 @@ export { PlaylistPage } from './PlayListPage/PlaylistPage.jsx';
 export { WatchLaterPage } from './WatchLater/WatchLaterPage.jsx';
 export { AppRoutes } from './Components/Router/Router.jsx';
 export { ModalComponent } from './Components/Modal/ModalComponent.jsx';
+export { SingleVideoPage } from './SingleVideoPage/SingleVideoPage.jsx';
