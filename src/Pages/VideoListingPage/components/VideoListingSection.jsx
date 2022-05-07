@@ -3,9 +3,12 @@ import { VideoCard } from './VideoCard';
 const VideoListingSection = () => {
 	const { videos, loadingVideos } = useVideo();
 	return (
-		<div className='video-listing-section'>
-			{!loadingVideos && videos.map((video, index) => <VideoCard key={video._id} video={video} index={index} />)}
-		</div>
+		<>
+			<div className='video-listing-section text-grey'>Showing result:- {videos.length}</div>
+			<div className='video-listing-section'>
+				{!loadingVideos && videos.map((video, index) => <VideoCard key={video._id} video={video} index={index} />)}
+			</div>
+		</>
 	);
 };
 

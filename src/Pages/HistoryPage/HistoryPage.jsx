@@ -2,9 +2,10 @@ import './HistoryPage.css';
 import { VideoCard } from '../VideoListingPage/components/VideoCard';
 import { useHistory } from '../../Context';
 import { useNavigate } from 'react-router-dom';
+import { DeleteIcon } from '../../Assets/svg/AllSVG';
 
 const HistoryPage = () => {
-	const { historyList } = useHistory();
+	const { historyList, removeAllVideosFromHistory, removeVideoFromHistory } = useHistory();
 	const navigate = useNavigate();
 	return (
 		<div className='app-main-content'>
@@ -21,11 +22,21 @@ const HistoryPage = () => {
 					<div className='video-listing-section text-grey'>Showing result:- {historyList.length}</div>
 					<div className='video-listing-section'>
 						{historyList.map((video, index) => (
-							<VideoCard key={video._id} video={video} index={index} />
+							<VideoCard
+								key={video._id}
+								video={video}
+								index={index}
+								canDelete={true}
+								deleteOnClick={() => removeVideoFromHistory(video._id)}
+							/>
 						))}
 					</div>
 				</>
 			)}
+			<button onClick={removeAllVideosFromHistory} className='btn-fab'>
+				<DeleteIcon />
+				<p>Delete all</p>
+			</button>
 		</div>
 	);
 };
