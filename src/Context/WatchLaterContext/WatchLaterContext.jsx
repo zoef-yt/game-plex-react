@@ -9,16 +9,12 @@ const WatchLaterProvider = ({ children }) => {
 	const token = localStorage.getItem('token');
 
 	useEffect(() => {
-		if (watchLaterResponse != null && watchLaterResponse.watchlater) {
+		if (watchLaterResponse?.watchlater) {
 			setWatchLaterList(watchLaterResponse.watchlater);
 		} else {
 			getWatchLater();
 		}
 	}, [watchLaterResponse]);
-
-	useEffect(() => {
-		console.log(watchLaterError?.response);
-	}, [watchLaterError]);
 
 	const getWatchLater = () => {
 		watchLaterServerCall({

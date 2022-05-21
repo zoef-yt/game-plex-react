@@ -2,7 +2,7 @@ import { useContext, createContext, useState, useEffect, useReducer } from 'reac
 
 const initialData = {
 	selectedCategory: '',
-	dataToShow: '',
+	dataToShow: [],
 };
 
 const FilterContext = createContext();

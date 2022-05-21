@@ -1,5 +1,6 @@
 .single-playlist > hr {
 	margin: 2rem 0;
+	width: 100%;
 }
 
 .single-playlist .videos-hidden {
@@ -13,5 +14,22 @@
 }
 
 .playlist-heading {
+	font-size: 2.5rem;
+	display: flex;
+	align-items: center;
+}
+
+.playlist-heading span {
+	width: 100%;
 	cursor: pointer;
+}
+
+.playlist-heading .playlist-delete-icon {
+	cursor: pointer;
+	color: var(--colour-error);
+}
+
+.playlist-heading .playlist-delete-icon:hover {
+	background-color: var(--colour-error-second);
+	border-radius: 50%;
 }

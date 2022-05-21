@@ -4,23 +4,19 @@ import { useAxios } from '../../CustomHooks/useAxios';
 const HistoryContext = createContext();
 
 const HistoryProvider = ({ children }) => {
-	const [historyList, useHistoryList] = useState([]);
+	const [historyList, setHistoryList] = useState([]);
 
 	const { response: historyResponse, operation: historyServerCall, error: historyError } = useAxios();
 
 	const token = localStorage.getItem('token');
 
 	useEffect(() => {
-		if (historyResponse != null && historyResponse.history) {
-			useHistoryList(historyResponse.history);
+		if (historyResponse?.history) {
+			setHistoryList(historyResponse.history);
 		} else {
 			getHistory();
 		}
 	}, [historyResponse]);
-
-	useEffect(() => {
-		console.log(historyError?.response);
-	}, [historyError]);
 
 	const getHistory = () => {
 		historyServerCall({
