@@ -1,9 +1,18 @@
-import { useNavigate } from 'react-router-dom';
-import { useCategory } from '../../Context';
+import { useEffect } from 'react';
+import { useCategory, useFilter, useVideo } from '../../Context';
 import { CategoryCard } from './CategoryCard';
 import './Home.css';
 const Home = () => {
 	const { categories, loadingCategories } = useCategory();
+	const { videos } = useVideo();
+	const { filterState, filterDispatch } = useFilter();
+	useEffect(() => {
+		filterState.dataToShow.length === 0 &&
+			filterDispatch({
+				type: 'SET_DATA',
+				payload: videos,
+			});
+	}, [videos]);
 	return (
 		<div className='app-main-content home-body'>
 			{/* //!TODO THE IFRAME WILL BE EXTRACTED AND WILL BE USED AS AND COMPONENT IN THE NEXT PR */}

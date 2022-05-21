@@ -7,3 +7,4 @@ export { WatchLaterProvider, useWatchLater } from './WatchLaterContext/WatchLate
 export { PlaylistProvider, usePlaylist } from './PlaylistContext/PlaylistContext.jsx';
 export { ModalProvider, useModal } from './ModalContext/ModalContext.jsx';
 export { AuthProvider, useAuth } from './AuthContext/AuthContext.jsx';
+export { FilterProvider, useFilter } from './FilterContext/FilterContext.jsx';

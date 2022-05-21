@@ -1,10 +1,12 @@
 import './CategorySelectionBar.css';
-import { useCategory } from '../../../Context';
+import { useCategory, useFilter } from '../../../Context';
 
 const CategorySelectionButton = ({ buttonName }) => {
+	const { filterState, filterDispatch } = useFilter();
+	const isSelectedButton = filterState.selectedCategory === buttonName ? true : false;
 	return (
-		<div className='dropdown'>
-			<button className='btn btn-category btn-primary '>{buttonName}</button>
+		<div onClick={() => filterDispatch({ type: 'CATEGORY_SELECTION', payload: buttonName })} className='dropdown'>
+			<button className={`btn btn-category ${isSelectedButton ? 'btn-outline-primary' : 'btn-primary'} `}>{buttonName}</button>
 		</div>
 	);
 };
