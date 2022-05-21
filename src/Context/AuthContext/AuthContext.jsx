@@ -42,7 +42,6 @@ const AuthProvider = ({ children }) => {
 				return true;
 			}
 		} catch (e) {
-			console.log(e.response);
 			errorHandler(true, e.response.data.errors[0]);
 			return false;
 		} finally {
@@ -63,7 +62,6 @@ const AuthProvider = ({ children }) => {
 				errorHandler(false, '');
 			}
 		} catch (e) {
-			console.log(e.response);
 			errorHandler(true, e.response.data.errors[0]);
 		} finally {
 			setIsLoading(false);

@@ -5,7 +5,7 @@
 	display: grid;
 	grid-template-columns: 80% 20%;
 	grid-template-areas: 'video-section suggestion-section';
-	margin: 0 auto 0 auto;
+	margin: 0 auto;
 }
 .video-section {
 	grid-area: video-section;

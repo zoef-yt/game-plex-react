@@ -7,7 +7,7 @@ const SuggestedVideos = ({ videoURLId, randomlySortedVideos }) => {
 	const scrollBar = useRef();
 	const [suggestedVideo, setSuggestedVideo] = useState([]);
 	const [scrollPos, setScrollPos] = useState({ positionRightNow: 0, heightRemaining: 600 });
-	const videosLimit = 5;
+	const VIDEOLIMIT = 5;
 
 	const scrollHandler = (e) => {
 		const target = e.target;
@@ -16,14 +16,14 @@ const SuggestedVideos = ({ videoURLId, randomlySortedVideos }) => {
 
 	useEffect(() => {
 		scrollBar.current.scrollTop = 0;
-		const newMustWatchVideos = videos.slice(0, 7);
+		const newMustWatchVideos = videos.slice(0, VIDEOLIMIT);
 		setSuggestedVideo(newMustWatchVideos.filter((video) => video._id !== videoURLId));
 		setScrollPos((prev) => ({ ...prev, positionRightNow: 0 }));
 	}, [videoURLId, videos]);
 
 	useEffect(() => {
 		if (videos.length - 1 > suggestedVideo.length && scrollPos.positionRightNow > scrollPos.heightRemaining - 200) {
-			const newData = [...videos].slice(suggestedVideo.length + 1, suggestedVideo.length + 1 + videosLimit);
+			const newData = [...videos].slice(suggestedVideo.length + 1, suggestedVideo.length + 1 + VIDEOLIMIT);
 			setSuggestedVideo((prev) => [...prev, ...newData]);
 		}
 	}, [scrollPos]);

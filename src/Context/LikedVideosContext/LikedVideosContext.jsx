@@ -4,22 +4,18 @@ import { useAxios } from '../../CustomHooks/useAxios';
 const LikesContext = createContext();
 
 const LikesProvider = ({ children }) => {
-	const [likesList, useLikesList] = useState([]);
+	const [likesList, setLikesList] = useState([]);
 	const { response: likeVideosResponse, operation: likeVideosServerCall, loading: loadingWatchLater, error: likeVideosError } = useAxios();
 
 	const token = localStorage.getItem('token');
 
 	useEffect(() => {
-		if (likeVideosResponse != null && likeVideosResponse.likes) {
-			useLikesList(likeVideosResponse.likes);
+		if (likeVideosResponse?.likes) {
+			setLikesList(likeVideosResponse.likes);
 		} else {
 			getLikedVideo();
 		}
 	}, [likeVideosResponse]);
-
-	useEffect(() => {
-		console.log(likeVideosError?.response);
-	}, [likeVideosError]);
 
 	const getLikedVideo = () => {
 		likeVideosServerCall({

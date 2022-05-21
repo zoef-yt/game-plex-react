@@ -144,7 +144,7 @@ export const videos = [
 	{
 		_id: 'd6sk51OeSOg',
 		title: 'Pig Killed me with a Saw | PIGSAW | Zoef Games | Hindi Gameplay',
-		creator: 'JJ Olatunji',
+		creator: 'Zoef Games',
 		categoryName: 'Rage Gameplay',
 		description: 'Pig Killed me with a Saw.',
 		date: 'Oct 15, 2020',

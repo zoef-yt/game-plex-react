@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './SingleVideoPage.css';
-import { useAuth, useLikes, useModal, useVideo, useWatchLater } from '../../Context';
+import { useAuth, useLikes, useModal, usePlaylist, useVideo, useWatchLater } from '../../Context';
 import { SuggestedVideos } from './SuggestedVideos';
 import { VideoPlayer } from './VideoPlayer';
 import { AddToPlaylistIcon, FilledWatchLaterIcon, LikeFilledIcon, LikeIcon, WatchLaterIcon } from '../../Assets/svg/AllSVG';
@@ -11,7 +11,7 @@ const SingleVideoPage = () => {
 	const [currentVideoDetail, setCurrentVideoDetail] = useState('');
 	useEffect(() => {
 		const videoDetail = videos.find((video) => video._id === videoURLId);
-		if (videoDetail !== -1) {
+		if (videoDetail) {
 			setCurrentVideoDetail(videoDetail);
 		}
 		window.scrollTo(0, 0);
@@ -31,6 +31,10 @@ const SingleVideoPage = () => {
 	const isVideoLiked = likesList?.findIndex((vid) => vid._id === videoURLId) === -1 ? false : true;
 	const likeHandler = (vid) => {
 		user ? (isVideoLiked ? removeVideoFromLike(vid._id) : addVideoToLike(vid)) : openModal('AuthModal');
+	};
+	const { selectCurrentVideo } = usePlaylist();
+	const addToPlaylistHandler = (vid) => {
+		user ? (openModal('PlaylistModal'), selectCurrentVideo(vid)) : openModal('AuthModal');
 	};
 	return (
 		<div className='video-page-body'>
@@ -54,8 +58,7 @@ const SingleVideoPage = () => {
 									>
 										{isVideoInWatchLater ? <FilledWatchLaterIcon /> : <WatchLaterIcon />} Watch Later
 									</div>
-									<div className='cta-btn'>
-										{' '}
+									<div className='cta-btn' onClick={() => addToPlaylistHandler(currentVideoDetail)}>
 										<AddToPlaylistIcon /> Playlist
 									</div>
 								</div>

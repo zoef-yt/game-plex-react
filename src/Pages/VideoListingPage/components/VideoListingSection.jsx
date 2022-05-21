@@ -12,21 +12,18 @@ const VideoListingSection = () => {
 			});
 	}, [videos]);
 	const isDataToShowEmpty = filterState?.dataToShow;
-
 	const getFilteredData = (state) => {
 		const selectedCategoryVideos = selectedCategory(state.selectedCategory, state.dataToShow);
 		return selectedCategoryVideos;
 	};
 
-	const selectedCategory = (selectedCategory, dataToShow) => {
-		return selectedCategory === '' || selectedCategory === 'ALL'
-			? dataToShow
-			: [...dataToShow].filter((video) => video.categoryName === selectedCategory);
+	const selectedCategory = (categoryName, dataToShow) => {
+		return categoryName === '' || categoryName === 'ALL' ? dataToShow : [...dataToShow].filter((video) => video.categoryName === categoryName);
 	};
 
 	return (
 		<>
-			<div className='video-listing-section text-grey'>Showing result:- {isDataToShowEmpty && getFilteredData(filterState).length}</div>
+			<div className='video-listing-section text-grey'>Showing result:- {isDataToShowEmpty ? getFilteredData(filterState).length : 0}</div>
 			<div className='video-listing-section'>
 				{!loadingVideos &&
 					isDataToShowEmpty &&
@@ -37,6 +34,3 @@ const VideoListingSection = () => {
 };
 
 export { VideoListingSection };
-
-//! COMMENTED FOR REFERENCE
-// imgSrc:- https://i.ytimg.com/vi/JB4TIzOSV-c/maxresdefault.jpg

@@ -25,12 +25,6 @@ const PlaylistProvider = ({ children }) => {
 		}
 	}, [playlistResponse]);
 
-	useEffect(() => {
-		if (playlistError) {
-			console.log(playlistError);
-		}
-	}, [playlistError]);
-
 	const selectCurrentVideo = (vid) => {
 		setCurrentVideo(vid);
 	};
