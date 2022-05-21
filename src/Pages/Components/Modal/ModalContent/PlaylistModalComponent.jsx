@@ -19,7 +19,7 @@ const PlaylistModalComponent = () => {
 	};
 	return (
 		<div className='modal-card flex-column align-items-center space-evenly' onClick={(e) => e.stopPropagation()}>
-			{currentVideo != null && (
+			{currentVideo !== null && (
 				<div className='modal-playlist-container'>
 					{playlists?.playlists?.length > 0 &&
 						playlists?.playlists.map((singlePlaylist) => {

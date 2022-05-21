@@ -22,11 +22,10 @@ const PlaylistPage = () => {
 				<h3 className='text-align-center'>No playlist to show</h3>
 			) : (
 				<div className='video-listing-section'>
-					{playlists?.playlists != null &&
-						playlists.playlists.map((singlePlaylist) => {
-							const { _id, videos, title } = singlePlaylist;
-							return <SinglePlaylist key={_id} id={_id} videos={videos} name={title} />;
-						})}
+					{playlists?.playlists.map((singlePlaylist) => {
+						const { _id, videos, title } = singlePlaylist;
+						return <SinglePlaylist key={_id} id={_id} videos={videos} name={title} />;
+					})}
 				</div>
 			)}
 			<button onClick={createNewPlaylistHandler} className='btn-fab'>

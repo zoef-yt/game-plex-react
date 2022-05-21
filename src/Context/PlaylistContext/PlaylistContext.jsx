@@ -11,13 +11,13 @@ const PlaylistProvider = ({ children }) => {
 	const token = localStorage.getItem('token');
 
 	useEffect(() => {
-		if (playlistResponse != null && playlistResponse.playlists) {
+		if (playlistResponse?.playlists) {
 			setPlaylist(playlistResponse);
 		} else {
 			getPlaylists();
 		}
 
-		if (playlistResponse != null && playlistResponse.playlist) {
+		if (playlistResponse?.playlist) {
 			const updatedPlaylists = playlists.playlists.map((playlist) => {
 				return playlist._id === playlistResponse.playlist._id ? playlistResponse.playlist : playlist;
 			});
