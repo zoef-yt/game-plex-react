@@ -1,10 +1,12 @@
 import { useWatchLater } from '../../Context';
+import { useTitle } from '../../CustomHooks/useTitle';
 import { VideoCard } from '../VideoListingPage/components/VideoCard';
 
 import './WatchLaterPage.css';
 
 const WatchLaterPage = () => {
 	const { watchLaterList } = useWatchLater();
+	useTitle('Watch Later');
 	return (
 		<div className='app-main-content'>
 			<h1 className='text-align-center'>Watch Later</h1>

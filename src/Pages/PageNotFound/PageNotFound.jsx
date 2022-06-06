@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { useTitle } from '../../CustomHooks/useTitle';
 import './PageNotFound.css';
 
 const PageNotFound = () => {
+	useTitle('404');
 	const navigate = useNavigate();
 	return (
 		<div className='app-main-content page-not-found'>

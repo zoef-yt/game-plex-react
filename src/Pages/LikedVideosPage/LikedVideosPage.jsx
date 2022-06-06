@@ -1,9 +1,11 @@
 import { useLikes } from '../../Context';
+import { useTitle } from '../../CustomHooks/useTitle';
 import { VideoCard } from '../VideoListingPage/components/VideoCard';
 import './LikedVideosPage.css';
 
 const LikedVideosPage = () => {
 	const { likesList } = useLikes();
+	useTitle('Likes');
 	return (
 		<div className='app-main-content'>
 			<h1 className='text-align-center'>Liked Videos</h1>

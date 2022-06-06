@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useCategory, useFilter, useVideo } from '../../Context';
+import { useTitle } from '../../CustomHooks/useTitle';
 import { CategoryCard } from './CategoryCard';
 import './Home.css';
 const Home = () => {
+	useTitle();
 	const { categories, loadingCategories } = useCategory();
 	const { videos } = useVideo();
 	const { filterState, filterDispatch } = useFilter();

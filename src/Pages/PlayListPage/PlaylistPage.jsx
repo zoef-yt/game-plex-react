@@ -4,8 +4,10 @@ import { useAuth, useModal, usePlaylist } from '../../Context';
 import { useState, useEffect } from 'react';
 import { AddToPlaylistIcon, DeleteIcon, ExpandLessIcon, ExpandMoreIcon } from '../../Assets/svg/AllSVG';
 import { useNavigate } from 'react-router-dom';
+import { useTitle } from '../../CustomHooks/useTitle';
 
 const PlaylistPage = () => {
+	useTitle('Playlist');
 	const { user } = useAuth();
 	const { openModal } = useModal();
 

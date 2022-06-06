@@ -5,6 +5,7 @@ import { useAuth, useLikes, useModal, usePlaylist, useVideo, useWatchLater } fro
 import { SuggestedVideos } from './SuggestedVideos';
 import { VideoPlayer } from './VideoPlayer';
 import { AddToPlaylistIcon, FilledWatchLaterIcon, LikeFilledIcon, LikeIcon, WatchLaterIcon } from '../../Assets/svg/AllSVG';
+import { useTitle } from '../../CustomHooks/useTitle';
 const SingleVideoPage = () => {
 	const { id: videoURLId } = useParams();
 	const { videos } = useVideo();
@@ -36,6 +37,7 @@ const SingleVideoPage = () => {
 	const addToPlaylistHandler = (vid) => {
 		user ? (openModal('PlaylistModal'), selectCurrentVideo(vid)) : openModal('AuthModal');
 	};
+	useTitle(currentVideoDetail?.title);
 	return (
 		<div className='video-page-body'>
 			<div className='video-section'>

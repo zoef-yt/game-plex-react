@@ -73,18 +73,4 @@
 	.btn-fab > p {
 		display: none;
 	}
-
-	.game-plex-app {
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-template-rows: 14rem 1fr 5rem;
-		grid-template-areas:
-			'navbar'
-			'main-content '
-			'footer  ';
-		margin: auto;
-		min-height: 100vh;
-		width: 100%;
-		max-width: 170rem;
-	}
 }

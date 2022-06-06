@@ -19,8 +19,8 @@ const AuthModalComponent = () => {
 	};
 
 	const testUser = {
-		email: 'adarshbalika@gmail.com',
-		password: 'adarshBalika123',
+		email: 'ZoefShaikh@gmail.com',
+		password: 'testPassword',
 	};
 
 	const [textFields, setTextFields] = useState(defaultText);
@@ -89,6 +89,15 @@ const AuthModalComponent = () => {
 		setShowPassword({ ...showPassword, [name]: !showPassword[name] });
 	};
 
+	const testLoginHandler = async () => {
+		setTextFields((prev) => ({
+			...prev,
+			password: testUser.password,
+			email: testUser.email,
+		}));
+		const success = await loginHandler({ email: testUser.email, password: testUser.password });
+		success ? (closeModal(), setTextFields(defaultText)) : null;
+	};
 	return (
 		<div className='modal-card flex-column align-items-center space-evenly' onClick={(e) => e.stopPropagation()}>
 			<h1>{isLoginModal ? 'Login' : 'Sign Up'}</h1>
@@ -138,16 +147,7 @@ const AuthModalComponent = () => {
 			</div>
 
 			{isLoginModal && (
-				<p
-					onClick={() =>
-						setTextFields({
-							...textFields,
-							password: testUser.password,
-							email: testUser.email,
-						})
-					}
-					className='btn btn-link'
-				>
+				<p onClick={!isLoading ? () => testLoginHandler() : null} className='btn btn-link'>
 					Test Login
 				</p>
 			)}
