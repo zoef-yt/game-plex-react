@@ -3,9 +3,10 @@ import { VideoCard } from '../VideoListingPage/components/VideoCard';
 import { useHistory } from '../../Context';
 import { useNavigate } from 'react-router-dom';
 import { DeleteIcon } from '../../Assets/svg/AllSVG';
-
+import { useTitle } from '../../CustomHooks/useTitle.jsx';
 const HistoryPage = () => {
 	const { historyList, removeAllVideosFromHistory, removeVideoFromHistory } = useHistory();
+	useTitle('History');
 	const navigate = useNavigate();
 	return (
 		<div className='app-main-content'>

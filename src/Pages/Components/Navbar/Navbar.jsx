@@ -13,7 +13,7 @@ const Navbar = () => {
 				<NavLink className='navbar-brand ' to='/'>
 					<h1>Game Plex</h1>
 				</NavLink>
-				<input type='search' className='text-field' placeholder='Search' />
+
 				<div className='navbar-cta'>
 					{user && (
 						<NavLink to='/videos'>
@@ -43,7 +43,6 @@ const Navbar = () => {
 					)}
 				</div>
 			</div>
-			<input type='search' className='text-field mobile-searchbar' placeholder='Search' />
 		</nav>
 	);
 };
